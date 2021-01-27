@@ -49,5 +49,5 @@ class ImageScraper:
         print('\x1b[0;32;40m' + 'Completed, look at ./images folder.' + '\x1b[0m')
 
 
-m1 = ImageScraper("##", 250, 400).get_all_images()
+m1 = ImageScraper("tq", 250, 400).get_all_images()
 #make multiple instances and then use threading for both of them simulataneously
