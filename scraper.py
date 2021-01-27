@@ -13,7 +13,7 @@ class ImageScraper:
         self.point_max = point_max
 
     def download_image(self, filename, link): 
-        html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False) # I have to use a user agent because cloudflare security is gay
+        html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False) # user agent because cloudflare security is gay
         if html_req.status_code == 302:
             print('\x1b[0;30;41m' + 'Link does not exist' + '\x1b[0m'+"\n to fix please follow the instructions in the github repo. [link it here bai]")
             return
@@ -50,5 +50,4 @@ class ImageScraper:
 
 
 m1 = ImageScraper("##", 250, 400).get_all_images()
-m1 = ImageScraper("ly", 500, 670).get_all_images()
-#make multiple instance and then use threading.Thread for both of them 0_0
+#make multiple instances and then use threading for both of them simulataneously
