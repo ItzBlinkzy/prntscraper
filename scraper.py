@@ -1,6 +1,7 @@
 import requests
 import threading
 import string
+import os
 import random
 from bs4 import BeautifulSoup
 from multiprocessing import Process
@@ -23,7 +24,11 @@ class ImageScraper:
                 print("\x1b[0;36;40m" "Screenshot is removed." "\x1b[0m", link)
                 return False
             img = requests.get(src_img_from_html)
-
+            
+            if not os.path.exists(os.getcwd()+"\\images"):
+                raise Exception("\x1b[0;31;40m" "There is no /images folder in this directory" "\x1b[0m")
+                exit()
+                
             with open(f"./images/{filename}.png", "wb") as file:
                 file.write(img.content)
                 file.close()
