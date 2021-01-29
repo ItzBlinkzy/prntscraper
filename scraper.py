@@ -12,6 +12,9 @@ class ImageScraper:
     def download_image(self, filename, link):
         html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)  # user agent because cloudflare security is gay
 
+        if not os.path.exists(os.getcwd()+"\\images"):
+           raise Exception("\x1b[0;31;40m" "There is no /images folder in this directory" "\x1b[0m")
+        
         if html_req.status_code == 302:
             print("\x1b[0;30;41m" "Link does not exist" "\x1b[0m", link)
             return False
@@ -25,9 +28,6 @@ class ImageScraper:
                 return False
             img = requests.get(src_img_from_html)
             
-            if not os.path.exists(os.getcwd()+"\\images"):
-                raise Exception("\x1b[0;31;40m" "There is no /images folder in this directory" "\x1b[0m")
-                exit()
                 
             with open(f"./images/{filename}.png", "wb") as file:
                 file.write(img.content)
