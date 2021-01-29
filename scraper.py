@@ -86,7 +86,7 @@ if __name__ == "__main__":
     
     elif choose_input == "input":
         try:
-            chars = input("\x1b[0;33;40m" "Enter any two random letters in the alphabet. Example [gy]: " "\x1b[0m")
+            chars = input("\x1b[0;33;40m" "Enter any two random letters in the alphabet. Example [gy]: " "\x1b[0m").lower()
             start_point = int(input("\x1b[0;33;40m" "Enter a Point below 9999 to start from: " "\x1b[0m"))
             end_point = int(input("\x1b[0;33;40m" "Enter an End Point below 9999 to end: " "\x1b[0m"))
 
