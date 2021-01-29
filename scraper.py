@@ -32,7 +32,7 @@ class ImageScraper:
     
     
     def get_random_images(self, limit):
-        count=0
+        count = 0
         if limit < 1:
             print("\x1b[0;31;40m" "Below minimum limit (1)" "\x1b[0m")
             return
@@ -62,8 +62,9 @@ class ImageScraper:
         while point_from <= point_max:
             octal_version = str(point_from).zfill(4)
             img_link = f"https://prnt.sc/{two_chars}{octal_version}"
-            self.download_image(img_link[15:], img_link)
-            point_from += 1
+            downloaded = self.download_image(img_link[15:], img_link)
+            if downloaded:
+                point_from += 1
 
         print("\x1b[0;32;40m" "Completed, look at ./images folder." "\x1b[0m")
 
