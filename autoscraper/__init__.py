@@ -1,0 +1,1 @@
+from autoscraper import scraper
