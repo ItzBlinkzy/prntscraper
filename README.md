@@ -1,18 +1,18 @@
-# prnt.sc-scraper
+# prntscraper
 
-* *prnt.sc-scraper* will allow you to scrape images from the prnt.sc website as they have predictable subheadings we can freely attempt to get random images or images in a sequential order from a specified amount to a max limit and download them into a folder. This is a security issue from their end as It's highly common people store sensitive information that could easily be stolen if these images are found by the wrong people
+* *prntscraper* will allow you to scrape images from the prnt.sc website as they have predictable subheadings we can freely attempt to get random images or images in a sequential order from a specified amount to a max limit and download them into a folder. This is a security issue from their end as It's highly common people store sensitive information that could easily be stolen if these images are found by the wrong people
 
 # Installation
 ***This module is compatible with Python3+.***
 
 - Install latest version from git repository using pip:
 ```bash
-$ pip install git+https://github.com/ItzBlinkzy/prnt.sc-scraper.git
+$ pip install git+https://github.com/ItzBlinkzy/prntscraper.git
 ```
 
 - Install from PyPI:
 ```bash
-$ pip install prnt.sc-scraper
+$ pip install prntscraper
 ```
 
 ## **How to use**
@@ -78,7 +78,7 @@ Feel free to open an issue or make a pull request if you have any problems using
         
 
 ## Repo
-    * https://github.com/ItzBlinkzy/prnt.sc-scraper/
+    * https://github.com/ItzBlinkzy/prntscraper/
 
 ## License
 GNU General Public License v3
