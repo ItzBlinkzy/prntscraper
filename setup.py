@@ -14,8 +14,8 @@ setup(
     author_email="kitey13579@gmail.com",
     license="GNU",
     classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3 :: Only",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
     keywords="scraper - prnt.sc",
