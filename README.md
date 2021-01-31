@@ -30,6 +30,11 @@ print(result)
 my_scraper = PrntScraper()
 result = my_scraper.get_input_images()
 print(result)
+
+# Get the count of all the images in the ./images folder.
+my_scraper = PrntScraper()
+result = my_scraper.folder_size()
+print(result)
 ```
 
 # Outputs:
@@ -57,6 +62,11 @@ Downloaded https://prnt.sc/vk0104
 Downloaded https://prnt.sc/vk0105
 Successfully downloaded 6 images. Look at ./images folder.
 ```
+**folder_size()**
+```py
+There are currently 11 images in the folder
+```
+
 Pretty simple right?
 
 ## Issues
