@@ -1,1 +1,1 @@
-from autoscraper.scraper import PrntScraper
+from .scraper import PrntScraper

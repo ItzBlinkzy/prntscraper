@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="prnt.sc-scraper",
-    version="2.1.2.6",
+    version="2.1.0",
     description="Pulls random images from https://prnt.sc",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -14,7 +14,7 @@ setup(
     author_email="legendarystone12@gmail.com",
     license="GNU",
     classifiers=[
-        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
