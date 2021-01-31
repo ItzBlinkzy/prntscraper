@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="prnt.sc-scraper",
-    version="2.1.1",
+    version="2.1.2",
     description="Pulls random images from https://prnt.sc",
     long_description=long_description,
     long_description_content_type="text/markdown",
