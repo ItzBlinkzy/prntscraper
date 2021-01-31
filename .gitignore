@@ -1,5 +1,5 @@
 /images
 *.pyc
 /dist
-/prnt.sc_scraper.egg-info
+/prntscraper.egg-info
 /build
