@@ -67,5 +67,8 @@ Feel free to open an issue or make a pull request if you have any problems using
       * You can be here too if you'd like to contribute.
         
 
+## Repo
+    * https://github.com/ItzBlinkzy/prnt.sc-scraper/
+
 ## License
 MIT
