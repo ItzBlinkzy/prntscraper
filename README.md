@@ -64,7 +64,7 @@ Successfully downloaded 6 images. Look at ./images folder.
 ```
 **folder_size()**
 ```py
-There are currently 11 images in the folder
+There are currently 11 images in the folder.
 ```
 
 Pretty simple right?
