@@ -11,7 +11,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ItzBlinkzy/prnt.sc-scraper",
     author="Itz Blinkzy",
-    author_email="kitey13579@gmail.com",
+    author_email="legendarystone12@gmail.com",
     license="GNU",
     classifiers=[
         "Programming Language :: Python :: 3 :: Only",
