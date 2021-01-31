@@ -86,6 +86,11 @@ class PrntScraper:
         
         except ValueError:
             return "\x1b[0;31;40m" "Start and End points must be integers." "\x1b[0m"
+        
+    
+    def folder_size(self):
+        size = len(os.listdir(os.getcwd()+"\\images"))
+        return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"
 
 
 if __name__ == "__main__":
