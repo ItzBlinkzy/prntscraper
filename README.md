@@ -71,4 +71,4 @@ Feel free to open an issue or make a pull request if you have any problems using
     * https://github.com/ItzBlinkzy/prnt.sc-scraper/
 
 ## License
-MIT
+GNU General Public License v3
