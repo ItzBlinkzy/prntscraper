@@ -8,7 +8,6 @@ setup(
     version="2.2.0",
     description="Pulls random images from https://prnt.sc",
     long_description=long_description,
-    py_modules=["scraper"],
     long_description_content_type="text/markdown",
     url="https://github.com/ItzBlinkzy/prnt.sc-scraper",
     author="Itz Blinkzy",
