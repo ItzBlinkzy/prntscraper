@@ -19,7 +19,7 @@ $ pip install prnt.sc-scraper
   * When setting this up make sure you have a folder called **"images"** in the same directory as the file importing the module.
 
 ```py
-from autoscraper import PrntScraper
+from scraper import PrntScraper
 
 # Get random images and store them in ./images folder
 my_scraper = PrntScraper()
