@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="prnt.sc-scraper",
+    name="prntscraper",
     version="2.2.0",
     description="Pulls random images from https://prnt.sc",
     long_description=long_description,
@@ -18,7 +18,7 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    keywords="scraper prnt.sc",
+    keywords="scraper prnt.sc prntscraper",
     python_requires=">=3.7",
     packages=find_packages(),
     install_requires=["requests", "bs4"],
