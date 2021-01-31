@@ -19,7 +19,7 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    keywords="scraper - prnt.sc",
+    keywords="scraper prnt.sc",
     python_requires=">=3.7",
     packages=find_packages(),
     install_requires=["requests", "bs4"],
