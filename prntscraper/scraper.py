@@ -10,7 +10,7 @@ class PrntScraper:
     def download_image(self, filename, link):
         html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)  # user agent because cloudflare security is gay
 
-        if not os.path.exists(os.getcwd()+"\\images"):
+        if not os.path.exists(os.getcwd()+"/images"):
            raise Exception("\x1b[0;31;40m" "There is no ./images folder in this directory" "\x1b[0m")
         
         if html_req.status_code == 302:
