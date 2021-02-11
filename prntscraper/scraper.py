@@ -89,7 +89,7 @@ class PrntScraper:
         
     
     def folder_size(self):
-        size = len(os.listdir(os.getcwd()+"\\images"))
+        size = len(os.listdir(os.getcwd()+"/images"))
         return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"
 
 
