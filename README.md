@@ -39,33 +39,28 @@ print(result)
 ```
 
 # Outputs:
-**get_random_images()**
-
+**get_random_images()`**
 ```py
 How many images would you like?: 5
-Downloaded https://prnt.sc/odchh5
-Downloaded https://prnt.sc/2n833q
-Downloaded https://prnt.sc/n2w4x9
-Downloaded https://prnt.sc/cy2cgi
-Downloaded https://prnt.sc/w0a6bn
+Completed: 100%|██████████████████████████████████████████████████| 6/6 [00:09<00:00,  1.58s/images]
 Successfully downloaded 5 images. Look at ./images folder. 
 ```
+`get_random_images(newest=True)`
+*  To use the "**newest**" parameter you must have **Chromedriver** installed and inserted into **PATH** `(C:\Program Files (x86)`
+     The version of **Chromedriver** must be less than or equal to your current Chrome browser version. 
+    * To find your version type `chrome://version` in the search bar
+    
 **get_input_images()**
 ```py
 Enter any two random letters in the alphabet. Example [gy]: vk
 Enter a Point below 9999 to start from: 100
-Enter an End Point below 9999 to end: 105
-Downloaded https://prnt.sc/vk0100
-Downloaded https://prnt.sc/vk0101
-Downloaded https://prnt.sc/vk0102
-Downloaded https://prnt.sc/vk0103
-Downloaded https://prnt.sc/vk0104
-Downloaded https://prnt.sc/vk0105
-Successfully downloaded 6 images. Look at ./images folder.
+Enter an End Point (inclusive) below 9999 to end: 109
+Completed: 100%|██████████████████████████████████████████████████| 10/10 [00:13<00:00,  1.31s/images]
+Successfully downloaded 10 images. Look at ./images folder.
 ```
 **folder_size()**
 ```py
-There are currently 11 images in the folder.
+There are currently 15 images in the folder.
 ```
 
 Pretty simple right?

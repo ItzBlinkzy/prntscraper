@@ -4,8 +4,7 @@ import os
 import random
 from tqdm import tqdm
 from bs4 import BeautifulSoup
-
-
+from prntscraper.upload import upload_image
 user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
 
 
@@ -38,10 +37,14 @@ class PrntScraper:
     
     
 
-    def get_random_images(self):
+    def get_random_images(self, newest=False):
         img_count = 0
         limit = input("\x1b[0;33;40m" " How many images would you like?: " "\x1b[0m")
-        
+        three_chars = None
+        if newest:
+            print("\x1b[1;35;40m" "You have selected the newest images, it may take approximately 25-30 seconds to start. " "\x1b[0m")
+            three_chars = upload_image()
+            
         if not limit.isdigit():
             return "\x1b[0;31;40m" "You must enter an integer for the limit" "\x1b[0m"
         
@@ -54,7 +57,13 @@ class PrntScraper:
         
         with tqdm(total=limit, unit="images", desc="Processing...", bar_format='{desc}{percentage:3.0f}%|{bar:50}{r_bar}') as pbar:   # Creating a PROGRESS BAR
             while img_count < limit:
-                randchars = "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(6)])
+                randchars = None
+                if newest:
+                    randchars = three_chars + "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(3)])
+                    
+                if not newest:
+                    randchars = "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(6)])
+                    
                 img_link = f"https://prnt.sc/{randchars}"
                 downloaded = self.__download_image(randchars, img_link)
                 pbar.set_description(f"Downloading {img_link}")
@@ -67,7 +76,7 @@ class PrntScraper:
                     pbar.set_description(f"\x1b[0;31;40m" f"{img_link} does not exist" "\x1b[0m")
                 
                 elif downloaded == False:
-                    pbar.set_description(f"{img_link} is removed..")  
+                    pbar.set_description("\x1b[0;36;40m" f"{img_link} is removed" "\x1b[0m")
             pbar.set_description("Completed")
             
         return "\x1b[0;32;40m" f"Successfully downloaded {img_count} images. Look at ./images folder."  "\x1b[0m"
