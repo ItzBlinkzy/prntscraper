@@ -27,6 +27,11 @@ my_scraper = PrntScraper()
 result = my_scraper.get_random_images()
 print(result)
 
+# Get newest images and store them in ./images folder  || MUST HAVE CHROMEDRIVER INSTALLED TO WORK || 
+my_scraper = PrntScraper()
+result = my_scraper.get_random_images(newest=True)
+print(result)
+
 # Take inputted images and store them in ./images folder.
 my_scraper = PrntScraper()
 result = my_scraper.get_input_images()
