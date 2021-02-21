@@ -41,6 +41,7 @@ class PrntScraper:
         img_count = 0
         limit = input("\x1b[0;33;40m" " How many images would you like?: " "\x1b[0m")
         three_chars = None
+        
         if newest:
             print("\x1b[1;35;40m" "You have selected the newest images, it may take approximately 25-30 seconds to start. " "\x1b[0m")
             three_chars = upload_image()
