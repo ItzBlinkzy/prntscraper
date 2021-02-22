@@ -1,9 +1,10 @@
 import time
 import os
+import prntscraper
 from selenium import webdriver
 WEBDRIVER_PATH = "C:/Program Files (x86)/chromedriver.exe"
-MY_IMAGE_PATH = os.getcwd() + "/prntscraper/test/my_image.png"
-
+#MY_IMAGE_PATH = os.getcwd() + "/prntscraper/test/my_image.png"
+MY_IMAGE_PATH = prntscraper.__file__.replace("\__init__.py", "/test/my_image.png")
 options = webdriver.ChromeOptions()
 options.add_argument('--log-level=3')
 options.add_argument("--headless")
