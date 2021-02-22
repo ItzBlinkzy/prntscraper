@@ -1,15 +1,25 @@
 import time
 import os
 import prntscraper
+import requests
 from selenium import webdriver
 WEBDRIVER_PATH = "C:/Program Files (x86)/chromedriver.exe"
-#MY_IMAGE_PATH = os.getcwd() + "/prntscraper/test/my_image.png"
-MY_IMAGE_PATH = prntscraper.__file__.replace("\__init__.py", "/test/my_image.png")
+MY_IMAGE_PATH = os.getcwd() + "/temp_image.png"
+
 options = webdriver.ChromeOptions()
 options.add_argument('--log-level=3')
 options.add_argument("--headless")
 
+def __temp_download():
+    img = requests.get("https://media.discordapp.net/attachments/561907232338608152/813235414370222080/my_image.png?width=1013&height=676")
+    with open("./temp_image.png", "wb") as file:
+        file.write(img.content)
+        file.close()
+    
+
 def upload_image():
+    __temp_download()
+    
     driver = webdriver.Chrome(WEBDRIVER_PATH, chrome_options=options)
     driver.get("https://prnt.sc")
     
@@ -25,6 +35,8 @@ def upload_image():
     
     link = driver.find_element_by_id("link-textbox").text
     ind = link.rfind("/") + 1 
+    
     driver.close()
+    os.remove("./temp_image.png")
     
     return link[ind:ind+3] # get first three chars
