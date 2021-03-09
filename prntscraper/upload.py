@@ -11,7 +11,9 @@ options.add_argument('--log-level=3')
 options.add_argument("--headless")
 
 def __temp_download():
-    """Temporarily downloads an image created by Blinkzy from Discord"""
+    """
+    Temporarily downloads an image created by Blinkzy from Discord
+    """
     
     img = requests.get("https://media.discordapp.net/attachments/561907232338608152/813235414370222080/my_image.png?width=1013&height=676")
     with open("./temp_image.png", "wb") as file:
@@ -37,7 +39,7 @@ def upload_image():
     driver.implicitly_wait(10)
     print("Still loading please be patient...")
     
-    time.sleep(15) # Make sure the user has uploaded the file fast enough
+    time.sleep(25) # Make sure the user has uploaded the file fast enough
     
     link = driver.find_element_by_id("link-textbox").text
     ind = link.rfind("/") + 1 
