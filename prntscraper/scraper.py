@@ -5,11 +5,18 @@ import random
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 from prntscraper.upload import upload_image
+
+
 user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
 
 
 class PrntScraper:
     def __download_image(self, filename, link):
+        
+        """
+        Makes two requests to https://prnt.sc, downloads the file and stores them in ./images folder.
+        """
+        
         html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)  # user agent because cloudflare provides [error 520] without it
 
         if not os.path.exists(os.getcwd()+"/images"):
@@ -38,6 +45,12 @@ class PrntScraper:
     
 
     def get_random_images(self, newest=False):
+        
+        """
+        #### Gets images and stores them in ./images folder
+        ###  MUST HAVE CHROMEDRIVER INSTALLED TO GET NEWEST IMAGES 
+        """
+        
         img_count = 0
         limit = input("\x1b[0;33;40m" " How many images would you like?: " "\x1b[0m")
         three_chars = None
@@ -59,10 +72,11 @@ class PrntScraper:
         with tqdm(total=limit, unit="images", desc="Processing...", bar_format='{desc}{percentage:3.0f}%|{bar:50}{r_bar}') as pbar:   # Creating a PROGRESS BAR
             while img_count < limit:
                 randchars = None
-                if newest:
+                
+                if newest == True:
                     randchars = three_chars + "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(4)])
                     
-                if not newest:
+                if newest == False:
                     randchars = "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(6)])
                     
                 img_link = f"https://prnt.sc/{randchars}"
@@ -85,6 +99,10 @@ class PrntScraper:
 
 
     def get_input_images(self):
+        """
+        Takes inputted images and stores them in ./images folder.
+        """
+        
         try:
             success_img_count = 0
             two_chars = input("\x1b[0;33;40m" "Enter any two random letters in the alphabet. Example [gy]: " "\x1b[0m").lower()
@@ -135,6 +153,10 @@ class PrntScraper:
         
     
     def folder_size(self):
+        """
+        Returns the amount of images in the `./images` folder.
+        """
+        
         size = len(os.listdir(os.getcwd()+"/images"))
         return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"
 
@@ -153,5 +175,3 @@ if __name__ == "__main__":
     else:
         print("You did not enter 'input' or 'random'")
 
-# make multiple class instances and then use threading for both of them simulataneously
-#put all \x1b[0;33;40m and \x1b[0m in vars or use a color moduleq

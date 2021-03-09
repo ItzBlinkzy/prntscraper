@@ -11,6 +11,8 @@ options.add_argument('--log-level=3')
 options.add_argument("--headless")
 
 def __temp_download():
+    """Temporarily downloads an image created by Blinkzy from Discord"""
+    
     img = requests.get("https://media.discordapp.net/attachments/561907232338608152/813235414370222080/my_image.png?width=1013&height=676")
     with open("./temp_image.png", "wb") as file:
         file.write(img.content)
@@ -18,6 +20,10 @@ def __temp_download():
     
 
 def upload_image():
+    """
+    Uploads the temporary image to https://prnt.sc and takes the first three characters to be used to find recent images
+    """
+    
     __temp_download()
     
     driver = webdriver.Chrome(WEBDRIVER_PATH, chrome_options=options)
