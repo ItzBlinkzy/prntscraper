@@ -46,5 +46,10 @@ def upload_image():
     
     driver.close()
     os.remove("./temp_image.png")
+    three_chars = link[ind:ind+3]
     
-    return link[ind:ind+3] # get first three chars
+    if not three_chars:
+        return False
+    
+    return three_chars
+    

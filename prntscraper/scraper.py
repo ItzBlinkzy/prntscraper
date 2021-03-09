@@ -57,7 +57,13 @@ class PrntScraper:
         
         if newest:
             print("\x1b[1;35;40m" "You have selected the newest images, it may take approximately 25-30 seconds to start. " "\x1b[0m")
-            three_chars = upload_image()
+            file_chars = upload_image()
+            
+            if file_chars == False:
+                return "Could not upload image to https://prnt.sc in time, please try again."
+            
+            three_chars = file_chars
+            
             
         if not limit.isdigit():
             return "\x1b[0;31;40m" "You must enter an integer for the limit" "\x1b[0m"
@@ -160,18 +166,4 @@ class PrntScraper:
         size = len(os.listdir(os.getcwd()+"/images"))
         return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"
 
-
-if __name__ == "__main__":
-    choose_input = input("\x1b[0;33;40m" " Would you like to customize your input [Input]. [Random] for random: " "\x1b[0m").lower()
-    
-    if choose_input == "random":
-        m1 = PrntScraper().get_random_images()
-        print(m1)
-    
-    elif choose_input == "input":
-        m2 = PrntScraper().get_input_images()
-        print(m2)
-        
-    else:
-        print("You did not enter 'input' or 'random'")
 
