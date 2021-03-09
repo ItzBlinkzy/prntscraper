@@ -60,7 +60,7 @@ class PrntScraper:
             while img_count < limit:
                 randchars = None
                 if newest:
-                    randchars = three_chars + "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(3)])
+                    randchars = three_chars + "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(4)])
                     
                 if not newest:
                     randchars = "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(6)])
