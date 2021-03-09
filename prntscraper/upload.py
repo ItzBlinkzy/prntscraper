@@ -3,12 +3,15 @@ import os
 import prntscraper
 import requests
 from selenium import webdriver
+
+
 WEBDRIVER_PATH = "C:/Program Files (x86)/chromedriver.exe"
 MY_IMAGE_PATH = os.getcwd() + "/temp_image.png"
 
 options = webdriver.ChromeOptions()
 options.add_argument('--log-level=3')
 options.add_argument("--headless")
+
 
 def __temp_download():
     """
@@ -39,7 +42,7 @@ def upload_image():
     driver.implicitly_wait(10)
     print("Still loading please be patient...")
     
-    time.sleep(25) # Make sure the user has uploaded the file fast enough
+    time.sleep(55) # Make sure the user has uploaded the file fast enough
     
     link = driver.find_element_by_id("link-textbox").text
     ind = link.rfind("/") + 1 

@@ -56,7 +56,7 @@ class PrntScraper:
         three_chars = None
         
         if newest:
-            print("\x1b[1;35;40m" "You have selected the newest images, it may take approximately 25-30 seconds to start. " "\x1b[0m")
+            print("\x1b[1;35;40m" "You have selected the newest images, it may take approximately 55 - 60 seconds to start. " "\x1b[0m")
             file_chars = upload_image()
             
             if file_chars == False:
