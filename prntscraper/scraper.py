@@ -5,7 +5,7 @@ import random
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 from prntscraper.upload import upload_image
-
+from prntscraper.Exceptions import NoImageFolderError, ValueTooSmallError, ValueTooLargeError, NotAnIntegerError, AlphabeticCharsOnlyError
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
 
@@ -20,7 +20,7 @@ class PrntScraper:
         html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)  # user agent because cloudflare provides [error 520] without it
 
         if not os.path.exists(os.getcwd()+"/images"):
-           raise Exception("\x1b[0;31;40m" "There is no ./images folder in this directory" "\x1b[0m")
+           raise NoImageFolderError()
         
         if html_req.status_code == 302:
             return 302
@@ -66,12 +66,12 @@ class PrntScraper:
             
             
         if not limit.isdigit():
-            return "\x1b[0;31;40m" "You must enter an integer for the limit" "\x1b[0m"
+            raise NotAnIntegerError(limit)
         
         limit = int(limit)
         
         if limit < 1:
-            return "\x1b[0;31;40m" "Below minimum limit (1)" "\x1b[0m"
+            raise ValueTooSmallError(limit)
         
         alphanum = string.ascii_lowercase + "1234567890"
         
@@ -117,17 +117,20 @@ class PrntScraper:
             limit = (point_max - point_from) + 1
             
             # INPUT ERROR HANDLING
-            if point_from > 9999 or point_max > 9999:
-                return "\x1b[0;31;40m" "Must be below 9999" "\x1b[0m"
+            if point_from > 9999:
+                raise ValueTooLargeError(point_from)
 
+            if point_max > 9999:
+                raise ValueTooLargeError(point_max)
+            
             if not two_chars.isalpha():
-                return "\x1b[0;31;40m" "Alphabetic characters only." "\x1b[0m"
+                raise AlphabeticCharsOnlyError(two_chars)
 
             if len(two_chars) != 2:
                 return "\x1b[0;31;40m" f"Expected (2) characters got {len(two_chars)}" "\x1b[0m"
 
             if point_from >= point_max:
-                return "\x1b[0;31;40m" "Start point must be lower than end." "\x1b[0m"
+                raise ValueTooLargeError(point_from)
             
             with tqdm(total=limit, unit="images", desc="Processing...", bar_format='{desc}{percentage:3.0f}%|{bar:50}{r_bar}') as pbar: # PROGRESS BAR
                 
