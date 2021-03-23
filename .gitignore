@@ -3,3 +3,5 @@
 /dist
 /prntscraper.egg-info
 /build
+/.vscode
+/test.py

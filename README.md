@@ -6,7 +6,7 @@
 # Installation
 ***This module is compatible with Python3+.***
 
-- Install latest version from git repository using pip:
+- Install the latest version from git repository using pip:
 ```bash
 $ pip install git+https://github.com/ItzBlinkzy/prntscraper.git
 ```
