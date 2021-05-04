@@ -22,25 +22,24 @@ $ pip install prntscraper
 ```py
 from prntscraper.scraper import PrntScraper
 
-# Gets random images and store them in ./images folder
+
 my_scraper = PrntScraper()
-result = my_scraper.get_random_images()
-print(result)
+
+# Gets random images and store them in ./images folder
+random_images = my_scraper.get_random_images()
+print(random_images)
 
 # Gets the newest images and stores them in ./images folder  || MUST HAVE CHROMEDRIVER INSTALLED TO WORK || 
-my_scraper = PrntScraper()
-result = my_scraper.get_random_images(newest=True)
-print(result)
+new_random_images = my_scraper.get_random_images(newest=True)
+print(new_random_images)
 
 # Takes inputted images and stores them in ./images folder.
-my_scraper = PrntScraper()
-result = my_scraper.get_input_images()
-print(result)
+input_images = my_scraper.get_input_images()
+print(input_images)
 
 # Gets the count of all the images in the ./images folder.
-my_scraper = PrntScraper()
-result = my_scraper.folder_size()
-print(result)
+size = my_scraper.folder_size()
+print(size)
 ```
 
 # Outputs:
