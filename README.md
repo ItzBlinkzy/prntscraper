@@ -20,7 +20,7 @@ $ pip install prntscraper
   * When setting this up make sure you have a folder called **"images"** in the same directory as the file importing the module.
 
 ```py
-from prntscraper.scraper import PrntScraper
+from prntscraper import PrntScraper
 
 
 my_scraper = PrntScraper()
