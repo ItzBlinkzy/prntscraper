@@ -2,6 +2,8 @@
 
 * *prntscraper* will allow you to scrape images from the prnt.sc website as they have predictable subheadings we can freely attempt to get random images or images in a sequential order from a specified amount to a max limit and download them into a folder. This process is also known as [Fuskering](https://en.wikipedia.org/wiki/Fusker)  This is a security issue from their end as It's highly common people store sensitive information that could easily be stolen if these images are found by the wrong people.
 
+## This module is no longer being worked on.
+
 * **DISCLAIMER** I am not responsible for the information that may be found with this package.
 # Installation
 ***This module is compatible with Python3+.***
