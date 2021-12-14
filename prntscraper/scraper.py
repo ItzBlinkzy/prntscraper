@@ -35,7 +35,10 @@ class PrntScraper:
                 return False
 
             img = requests.get(src_img_from_html)
-
+            
+            if img.status_code == 520:
+                return False
+            
             with open(f"./images/{filename}.png", "wb") as file:
                 file.write(img.content)
                 file.close()
@@ -146,7 +149,7 @@ class PrntScraper:
                         pbar.update(1)
 
                     elif downloaded == False:
-                        pbar.set_description("\x1b[0;36;40m" f"{img_link} is removed" "\x1b[0m")
+                        pbar.set_description("\x1b[0;36;40m" f"Couldn't download {img_link}" "\x1b[0m")
                         pbar.update(1)
 
                     point_from += 1
