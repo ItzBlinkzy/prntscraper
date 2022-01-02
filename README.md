@@ -19,7 +19,8 @@ $ pip install prntscraper
 ```
 
 ## **How to use**
-  * When setting this up make sure you have a folder called **"images"** in the same directory as the file importing the module.
+
+Copy the below code into a python file and run it. This should automatically create a folder called **"images"** in the same directory as this file. This is also why it is advised you make a new folder for ease of access.
 
 ```py
 from prntscraper import PrntScraper
