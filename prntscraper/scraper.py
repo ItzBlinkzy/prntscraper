@@ -2,6 +2,7 @@ import requests
 import string
 import os
 import random
+import base64
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 from prntscraper.upload import upload_image
@@ -12,12 +13,12 @@ user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, li
 
 class PrntScraper:
     def __download_image(self, filename, link):
-
         """
         Makes two requests to https://prnt.sc, downloads the file and stores them in ./images folder.
         """
 
-        html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)  # user agent because cloudflare provides [error 520] without it
+        # user agent because cloudflare provides [error 520] without it
+        html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)
 
         if not os.path.exists(os.getcwd() + "/images"):
             raise NoImageFolderError()
@@ -35,18 +36,26 @@ class PrntScraper:
                 return False
 
             img = requests.get(src_img_from_html)
-            
+
             if img.status_code == 520:
                 return False
-            
+
             with open(f"./images/{filename}.png", "wb") as file:
                 file.write(img.content)
                 file.close()
 
+            # check if downloaded image is available
+            result = self.check_image(filename)
+
+            if(result):
+                # remove downloaded image
+                if os.path.exists(f"./images/{str(filename)}.png"):
+                    os.remove(f"./images/{str(filename)}.png")
+                    return False
+                
         return True
 
     def get_random_images(self, newest=False):
-
         """
         #### Gets images and stores them in ./images folder
         ###  MUST HAVE CHROMEDRIVER INSTALLED TO GET NEWEST IMAGES 
@@ -132,7 +141,8 @@ class PrntScraper:
             if point_from >= point_max:
                 raise ValueTooLargeError(point_from)
 
-            with tqdm(total=limit, unit="images", desc="Processing...", bar_format='{desc}{percentage:3.0f}%|{bar:50}{r_bar}') as pbar: # PROGRESS BAR
+            # PROGRESS BAR
+            with tqdm(total=limit, unit="images", desc="Processing...", bar_format='{desc}{percentage:3.0f}%|{bar:50}{r_bar}') as pbar:
 
                 while point_from <= point_max:
                     octal_version = str(point_from).zfill(4)
@@ -167,3 +177,19 @@ class PrntScraper:
 
         size = len(os.listdir(os.getcwd() + "/images"))
         return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"
+
+    def check_image(self, image_name):
+        unavailable = "b'iVBORw0KGgoAAAANSUhEUgAAAKEAAABRAQMAAACADVTsAAAABlBMVEUiIiL///9ehyAxAAABrElEQVR4Xu3QL2/bQBgG8NdRlrnMNqxu1eVAahCQVAEF03STbsuBSFVZYEBBoJ2RjZ0Hljuy6IZaUlUlpfsKRUmZP4JTNJixkEm7nJu/Mxlot0l7JJOfXj06P/D3xvkBQH/lqoEC7WVvzqM0k/f4+Gat2nt7ppqeCjCbiJX6HmN7vnca4LLc0BljH/yZ0ZejDQXGlA9GmYSthoumVw1wZ6PByxjrpxmeZq0hbMcDXPCHGVB4hHCAkgUKrrNSulawelPRCH37mu4fR1EdZYPwnTA6UZoQfteoMSmPCFVcgYmUmmCuPMKkIAtNFjqS+hWyOo+MzmVsb12NS1aFazThe1Ztr2qYBklWvcPKCKG+TA/MGwjqDcI4n1Pko+1E5KM9TRz75fGB0qWv1Vlq/Bo9Gzqo3oqu7g991G1bVQmp8IQcdeRtEGpyxoVVB5eNLob0qS6xpaJc5+J7Wx+wkwct5SoSn2vCOORKrHZk0lC69tAbm4a2g0grEuknvd9tb61XhqK8hz+d/xG/cft5fD0dvxA7qsLrj+EXWqBugRbeHl6qcbCr4Ba+7Tn88/kJk4CIztd1IrIAAAAASUVORK5CYII='"
+        
+        # encode image
+        with open(f"./images/{image_name}.png", "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+
+        if encoded_string != "":
+            # compare encoded image
+            if(str(encoded_string) == str(unavailable)): 
+                return True
+            else: 
+                return False
+        else:
+            return False
