@@ -45,7 +45,7 @@ class PrntScraper:
                 file.close()
 
             # check if downloaded image is available
-            result = self.check_image(filename)
+            result = self.__check_image(filename)
 
             if(result):
                 # remove downloaded image
@@ -54,6 +54,22 @@ class PrntScraper:
                     return False
                 
         return True
+    
+    def __check_image(self, filename):
+        unavailable = "b'iVBORw0KGgoAAAANSUhEUgAAAKEAAABRAQMAAACADVTsAAAABlBMVEUiIiL///9ehyAxAAABrElEQVR4Xu3QL2/bQBgG8NdRlrnMNqxu1eVAahCQVAEF03STbsuBSFVZYEBBoJ2RjZ0Hljuy6IZaUlUlpfsKRUmZP4JTNJixkEm7nJu/Mxlot0l7JJOfXj06P/D3xvkBQH/lqoEC7WVvzqM0k/f4+Gat2nt7ppqeCjCbiJX6HmN7vnca4LLc0BljH/yZ0ZejDQXGlA9GmYSthoumVw1wZ6PByxjrpxmeZq0hbMcDXPCHGVB4hHCAkgUKrrNSulawelPRCH37mu4fR1EdZYPwnTA6UZoQfteoMSmPCFVcgYmUmmCuPMKkIAtNFjqS+hWyOo+MzmVsb12NS1aFazThe1Ztr2qYBklWvcPKCKG+TA/MGwjqDcI4n1Pko+1E5KM9TRz75fGB0qWv1Vlq/Bo9Gzqo3oqu7g991G1bVQmp8IQcdeRtEGpyxoVVB5eNLob0qS6xpaJc5+J7Wx+wkwct5SoSn2vCOORKrHZk0lC69tAbm4a2g0grEuknvd9tb61XhqK8hz+d/xG/cft5fD0dvxA7qsLrj+EXWqBugRbeHl6qcbCr4Ba+7Tn88/kJk4CIztd1IrIAAAAASUVORK5CYII='"
+        
+        # encode image
+        with open(f"./images/{filename}.png", "rb") as image:
+            encoded_string = base64.b64encode(image.read())
+
+        if encoded_string != "":
+            # compare encoded image
+            if(str(encoded_string) == str(unavailable)): 
+                return True
+            else: 
+                return False
+        else:
+            return False
 
     def get_random_images(self, newest=False):
         """
@@ -177,19 +193,3 @@ class PrntScraper:
 
         size = len(os.listdir(os.getcwd() + "/images"))
         return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"
-
-    def check_image(self, image_name):
-        unavailable = "b'iVBORw0KGgoAAAANSUhEUgAAAKEAAABRAQMAAACADVTsAAAABlBMVEUiIiL///9ehyAxAAABrElEQVR4Xu3QL2/bQBgG8NdRlrnMNqxu1eVAahCQVAEF03STbsuBSFVZYEBBoJ2RjZ0Hljuy6IZaUlUlpfsKRUmZP4JTNJixkEm7nJu/Mxlot0l7JJOfXj06P/D3xvkBQH/lqoEC7WVvzqM0k/f4+Gat2nt7ppqeCjCbiJX6HmN7vnca4LLc0BljH/yZ0ZejDQXGlA9GmYSthoumVw1wZ6PByxjrpxmeZq0hbMcDXPCHGVB4hHCAkgUKrrNSulawelPRCH37mu4fR1EdZYPwnTA6UZoQfteoMSmPCFVcgYmUmmCuPMKkIAtNFjqS+hWyOo+MzmVsb12NS1aFazThe1Ztr2qYBklWvcPKCKG+TA/MGwjqDcI4n1Pko+1E5KM9TRz75fGB0qWv1Vlq/Bo9Gzqo3oqu7g991G1bVQmp8IQcdeRtEGpyxoVVB5eNLob0qS6xpaJc5+J7Wx+wkwct5SoSn2vCOORKrHZk0lC69tAbm4a2g0grEuknvd9tb61XhqK8hz+d/xG/cft5fD0dvxA7qsLrj+EXWqBugRbeHl6qcbCr4Ba+7Tn88/kJk4CIztd1IrIAAAAASUVORK5CYII='"
-        
-        # encode image
-        with open(f"./images/{image_name}.png", "rb") as image_file:
-            encoded_string = base64.b64encode(image_file.read())
-
-        if encoded_string != "":
-            # compare encoded image
-            if(str(encoded_string) == str(unavailable)): 
-                return True
-            else: 
-                return False
-        else:
-            return False
