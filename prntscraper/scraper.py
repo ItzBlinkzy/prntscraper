@@ -6,7 +6,7 @@ import base64
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 from prntscraper.upload import upload_image
-from prntscraper.Exceptions import NoImageFolderError, ValueTooSmallError, ValueTooLargeError, NotAnIntegerError, AlphabeticCharsOnlyError
+from prntscraper.Exceptions import ValueTooSmallError, ValueTooLargeError, NotAnIntegerError, AlphabeticCharsOnlyError
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
 
@@ -21,8 +21,11 @@ class PrntScraper:
         html_req = requests.get(link, headers={"User-Agent": user_agent}, allow_redirects=False)
 
         if not os.path.exists(os.getcwd() + "/images"):
-            raise NoImageFolderError()
-
+            try:
+                os.mkdir("./images")
+            except FileExistsError:
+                pass
+            
         if html_req.status_code == 302:
             return 302
 
@@ -190,6 +193,12 @@ class PrntScraper:
         """
         Returns the amount of images in the `./images` folder.
         """
-
+        
+        try:
+            os.mkdir("./images")
+        except FileExistsError:
+            pass
+        
         size = len(os.listdir(os.getcwd() + "/images"))
+        
         return "\x1b[0;32;40m" f"There are currently {size} images in the folder."  "\x1b[0m"

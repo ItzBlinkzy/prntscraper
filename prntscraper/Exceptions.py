@@ -3,16 +3,6 @@ class PrntScraperError(Exception):
     pass
 
 
-class NoImageFolderError(PrntScraperError):
-    """Raised when there is no ./image folder located in module import directory"""
-    def __init__(self):
-        self.message = "\x1b[0;31;40m" "There is no ./images folder in this directory, please create this folder." "\x1b[0m"
-        super().__init__(self.message)
-
-    def __str__(self):
-        return self.message
-
-
 class ValueTooSmallError(PrntScraperError):
     """Raised when value is too small"""
     def __init__(self, value):
