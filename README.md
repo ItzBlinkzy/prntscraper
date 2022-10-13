@@ -32,10 +32,6 @@ my_scraper = PrntScraper()
 random_images = my_scraper.get_random_images()
 print(random_images)
 
-# Gets the newest images and stores them in ./images folder  || MUST HAVE CHROMEDRIVER INSTALLED TO WORK || 
-new_random_images = my_scraper.get_random_images(newest=True)
-print(new_random_images)
-
 # Takes inputted images and stores them in ./images folder.
 input_images = my_scraper.get_input_images()
 print(input_images)
@@ -51,12 +47,7 @@ print(size)
 How many images would you like?: 5
 Completed: 100%|██████████████████████████████████████████████████| 6/6 [00:09<00:00,  1.58s/images]
 Successfully downloaded 5 images. Look at ./images folder. 
-```
-`get_random_images(newest=True)`
-*  To use the "**newest**" parameter you must have **Chromedriver** installed and inserted into **PATH** `(C:\Program Files (x86)`
-     The version of **Chromedriver** must be less than or equal to your current Chrome browser version. 
-    * To find your version type `chrome://version` in the search bar
-    
+``` 
 **get_input_images()**
 ```py
 Enter any two random letters in the alphabet. Example [gy]: vk
