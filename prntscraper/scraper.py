@@ -5,7 +5,6 @@ import random
 import base64
 from tqdm import tqdm
 from bs4 import BeautifulSoup
-from prntscraper.upload import upload_image
 from prntscraper.Exceptions import ValueTooSmallError, ValueTooLargeError, NotAnIntegerError, AlphabeticCharsOnlyError
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
@@ -74,26 +73,14 @@ class PrntScraper:
         else:
             return False
 
-    def get_random_images(self, newest=False):
+    def get_random_images(self):
         """
         #### Gets images and stores them in ./images folder
-        ###  MUST HAVE CHROMEDRIVER INSTALLED TO GET NEWEST IMAGES 
         """
 
         img_count = 0
         limit = input("\x1b[0;33;40m" " How many images would you like?: " "\x1b[0m")
-        three_chars = None
-
-        if newest:
-            print(
-                "\x1b[1;35;40m" "You have selected the newest images, it may take approximately 55 - 60 seconds to start. " "\x1b[0m")
-            file_chars = upload_image()
-
-            if not file_chars:
-                return "Could not upload image to https://prnt.sc in time, please try again."
-
-            three_chars = file_chars
-
+        
         if not limit.isdigit():
             raise NotAnIntegerError(limit)
 
@@ -107,13 +94,7 @@ class PrntScraper:
         with tqdm(total=limit, unit="images", desc="Processing...",
                   bar_format='{desc}{percentage:3.0f}%|{bar:50}{r_bar}') as pbar:  # Creating a PROGRESS BAR
             while img_count < limit:
-                rand_chars = None
-
-                if newest:
-                    rand_chars = three_chars + "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(4)])
-
-                if not newest:
-                    rand_chars = "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(6)])
+                rand_chars = "".join([alphanum[alphanum.index(random.choice(alphanum))] for i in range(6)])
 
                 img_link = f"https://prnt.sc/{rand_chars}"
                 downloaded = self.__download_image(rand_chars, img_link)
