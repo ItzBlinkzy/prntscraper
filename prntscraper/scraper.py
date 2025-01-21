@@ -37,7 +37,7 @@ class PrntScraper:
             if not src_img_from_html.startswith("http"):
                 return False
 
-            img = requests.get(src_img_from_html)
+            img = requests.get(src_img_from_html, headers={"User-Agent": user_agent}, allow_redirects=False)
 
             if img.status_code == 520:
                 return False
